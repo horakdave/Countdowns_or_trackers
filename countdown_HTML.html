@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kdy jsou prijmacky?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #000000;
+            color: #ffffff;
+        }
+    
+        #countdown {
+            font-size: 48px;
+            margin-top: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div id="countdown"></div>
+
+    <script>
+        function updateCountdown() {
+            const countdownElement = document.getElementById('countdown');
+            const targetDate = new Date('2024-04-12T00:00:00');
+            const currentDate = new Date();
+            const remainingTime = targetDate - currentDate;
+            const remainingDays = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
+
+            if (remainingDays > 0) {
+                if (remainingDays < 100) {
+                    countdownElement.textContent = remainingDays + ' dnů do příjmacích zkoušek 😭';
+                } else {
+                    countdownElement.textContent = remainingDays + ' dnů do příjmacích zkoušek 😥';
+                }
+            } else {
+                countdownElement.textContent = '0 dnů 😶';
+            }
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
