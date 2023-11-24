@@ -8,22 +8,40 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background-color: #000000;
-            color: #ffffff;
+            font-weight: 1000;
+            color: #000;
             display: flex;
-            height: 75vh;
+            height: 100vh;
             justify-content: center;
             align-items: center;
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
         }
-    
+
         #countdown {
             font-size: 48px;
-            margin-top: 150px;
+            margin-top: 50px;
+            position: relative;
+            z-index: 2;
         }
+
+        #rocket {
+            position: absolute;
+            z-index: 1;
+            width: 0px;     /*1100*/
+            height: 0px;    /*1100*/
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
     </style>
 </head>
 <body>
     <div id="countdown"></div>
+    <img id="rocket" src="rocket.png" alt="Rocket">
 
     <script>
         function updateCountdown() {
@@ -32,20 +50,19 @@
             const currentDate = new Date();
             const remainingTime = targetDate - currentDate;
             const remainingDays = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
-
+    
             if (remainingDays > 0) {
-                if (remainingDays < 100) {
-                    countdownElement.textContent = remainingDays + ' dnů do příjmacích zkoušek 😭';
-                } else {
-                    countdownElement.textContent = remainingDays + ' dnů do příjmacích zkoušek 😥';
-                }
-            } else {
-                countdownElement.textContent = '0 dnů 😶';
+               countdownElement.textContent = remainingDays + ' dnů do příjmacích zkoušek';
+            } 
+            else {
+                countdownElement.textContent = '0 dnů';
             }
+    
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
         }
-
+    
         updateCountdown();
-        setInterval(updateCountdown, 1000);
     </script>
 </body>
 </html>
